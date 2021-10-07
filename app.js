@@ -7,7 +7,7 @@ const socketio = require('socket.io');
 
 const io = socketio(server);
 
-require('./socket')(io);
+require('./socket.io/socket')(io);
 
 app.use((req, res, next) => {
   req.io = io;
