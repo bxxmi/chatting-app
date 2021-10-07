@@ -3,6 +3,16 @@ const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const path = require('path');
+const socketio = require('socket.io');
+
+const io = socketio(server);
+
+require('./socket')(io);
+
+app.use((req, res, next) => {
+  req.io = io;
+  next();
+});
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
